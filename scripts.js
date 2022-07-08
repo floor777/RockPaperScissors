@@ -1,3 +1,6 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function computerPlay() {
     const moves = ["rock", "paper", "scissors"];
     let index = getRandomMove();
@@ -17,24 +20,31 @@ function determineWinner(playerSelection, computerSelection) {
     computerSelection = computerSelection.toLowerCase();
 
     if(playerSelection === computerSelection) {
+        trackScore("tie");
         return `You tied! ${playerSelection} matches ${computerSelection}`;
     }
     else if(playerSelection === "rock" && computerSelection === "scissors") {
+        trackScore("player");
         return `You won! ${playerSelection} beats ${computerSelection}`;
     }
     else if(playerSelection === "paper" && computerSelection === "rock") {
+        trackScore("player");
         return `You won! ${playerSelection} beats ${computerSelection}`;
     }
     else if(playerSelection === "scissors" && computerSelection === "paper") {
+        trackScore("player");
         return `You won! ${playerSelection} beats ${computerSelection}`;
     }
     else if(playerSelection === "scissors" && computerSelection === "rock") {
+        trackScore("computer");
         return `You lost! ${playerSelection} loses to ${computerSelection}`;
     }
     else if(playerSelection === "rock" && computerSelection === "paper") {
+        trackScore("computer");
         return `You lost! ${playerSelection} loses to ${computerSelection}`;
     }
     else if(playerSelection === "paper" && computerSelection === "scissors") {
+        trackScore("computer");
         return `You lost! ${playerSelection} loses to ${computerSelection}`;
     }
     
@@ -45,18 +55,33 @@ function playRound(playerSelection, computerSelection) {
     return determineWinner(playerSelection, computerSelection);
 
 }
+function trackScore(winner) {
+    
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for(int i = 0; i < 5; i++) {
-        playRound(getPlayerInput(), computerPlay());
-        
-
+    if(winner === "player") {
+        playerScore++;
     }
+    else if(winner ==="computer") {
+        computerScore++;
+    }
+    else {
+        playerScore++;
+        computerScore++;
+    }
+
 }
 
-console.log(playRound(getPlayerInput(), computerPlay()));
+function game() {
+    
+    for(let i = 0; i < 5; i++) {
+        console.log(playRound(getPlayerInput(), computerPlay()));
+        console.log(playerScore + "-" + computerScore);
+    
+    }
+    
+}
+
+console.log(game());
 /* rock vs rock OK
    rock vs scissors OK
    rock vs paper OK
