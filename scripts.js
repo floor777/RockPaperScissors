@@ -15,9 +15,25 @@ function getPlayerInput() {
     return prompt("Which move would you like to make(rock/paper/scissors)").toLowerCase();
 }
 
-function determineWinnerOfRound(playerSelection, computerSelection) {
+function checkForValidInput(playerSelection) {
+    if(playerSelection === 'paper' || playerSelection === 'rock' || playerSelection === 'scissors') {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function determineRoundWinner(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
+    if(!checkForValidInput(playerSelection)) {
+        while(!checkForValidInput(playerSelection)) {
+            playerSelection = prompt("Invalid player input. Please input a valid move(rock|paper|scissors").toLowerCase();
+        }
+        
+    }
+    
 
     if(playerSelection === computerSelection) {
         trackScore("tie");
@@ -51,8 +67,21 @@ function determineWinnerOfRound(playerSelection, computerSelection) {
 
 }
 
+function determineGameWinner() {
+    if(playerScore === computerScore) {
+        console.log("You tied");
+    }
+    else if(playerScore > computerScore) {
+        console.log("You won");
+
+    }
+    else if(playerScore < computerScore) {
+        console.log("You lost");
+    }
+}
+
 function playRound(playerSelection, computerSelection) {
-    return determineWinner(playerSelection, computerSelection);
+    return determineRoundWinner(playerSelection, computerSelection);
 
 }
 function trackScore(winner) {
@@ -71,6 +100,7 @@ function trackScore(winner) {
 
 }
 
+
 function game() {
     
     for(let i = 0; i < 5; i++) {
@@ -78,17 +108,7 @@ function game() {
         console.log("player: " + playerScore + "  |  " + "computer: " + computerScore);
     
     }
-    if(playerScore === computerScore) {
-        console.log("You tied");
-    }
-    else if(playerScore > computerScore) {
-        console.log("You won");
-
-    }
-    else if(playerScore < computerScore) {
-        console.log("You lost");
-    }
-    
+    determineGameWinner();
 }
 
 console.log(game());
