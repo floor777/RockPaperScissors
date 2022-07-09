@@ -75,8 +75,18 @@ function game() {
     
     for(let i = 0; i < 5; i++) {
         console.log(playRound(getPlayerInput(), computerPlay()));
-        console.log(playerScore + "-" + computerScore);
+        console.log("player: " + playerScore + "  |  " + "computer: " + computerScore);
     
+    }
+    if(playerScore === computerScore) {
+        console.log("You tied");
+    }
+    else if(playerScore > computerScore) {
+        console.log("You won");
+
+    }
+    else if(playerScore < computerScore) {
+        console.log("You lost");
     }
     
 }
