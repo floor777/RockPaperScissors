@@ -15,7 +15,7 @@ function getPlayerInput() {
     return prompt("Which move would you like to make(rock/paper/scissors)").toLowerCase();
 }
 
-function determineWinner(playerSelection, computerSelection) {
+function determineWinnerOfRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
 
@@ -92,14 +92,3 @@ function game() {
 }
 
 console.log(game());
-/* rock vs rock OK
-   rock vs scissors OK
-   rock vs paper OK
-   paper vs rock OK
-   paper vs scissors OK
-   paper vs paper OK 
-   scissors vs rock OK
-   scissors vs scissors OK
-   scissors vs paper OK
-
-*/
